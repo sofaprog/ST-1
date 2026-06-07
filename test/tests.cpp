@@ -88,7 +88,6 @@ TEST(PrimeTest, ConsistencyCheck) {
     uint64_t prime5 = nPrime(5);  // 11
     uint64_t prime4 = nPrime(4);  // 7
     EXPECT_EQ(prime5, nextPrime(prime4));
-    
     // сумма простых до 20 должна включать 19
     uint64_t sum = sumPrime(20);
     EXPECT_TRUE(checkPrime(19));
