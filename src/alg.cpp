@@ -42,16 +42,10 @@ uint64_t sumPrime(uint64_t hbound) {
     if (hbound <= 2) return 0;
     
     uint64_t total = 0;
-    uint64_t current = 2;
-    
-    while (current < hbound) {
+    for (uint64_t current = 2; current < hbound; current++) {
         if (checkPrime(current)) {
             total += current;
         }
-        current++;
-        
-        // Пропускаем четные числа кроме 2
-        if (current == 3) current++;
     }
     return total;
 }
