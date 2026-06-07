@@ -2,23 +2,56 @@
 #include <cstdint>
 #include "alg.h"
 
-
 bool checkPrime(uint64_t value) {
-  // вставьте код функции
-  return true;
+    if (value <= 1) return false;
+    if (value <= 3) return true;
+    
+    // Проверка через 6k ± 1
+    if (value % 2 == 0 || value % 3 == 0) return false;
+    
+    for (uint64_t i = 5; i * i <= value; i += 6) {
+        if (value % i == 0 || value % (i + 2) == 0) return false;
+    }
+    return true;
 }
 
 uint64_t nPrime(uint64_t n) {
-  // вставьте код функции
-  return 2;
+    if (n == 0) return 0;
+    
+    uint64_t found = 0;
+    uint64_t candidate = 1;
+    
+    while (found < n) {
+        candidate++;
+        if (checkPrime(candidate)) {
+            found++;
+        }
+    }
+    return candidate;
 }
 
 uint64_t nextPrime(uint64_t value) {
-  // вставьте код функции
-  return 2;
+    uint64_t search = value;
+    do {
+        search++;
+    } while (!checkPrime(search));
+    return search;
 }
 
 uint64_t sumPrime(uint64_t hbound) {
-  // вставьте код функции
-  return 2;
+    if (hbound <= 2) return 0;
+    
+    uint64_t total = 0;
+    uint64_t current = 2;
+    
+    while (current < hbound) {
+        if (checkPrime(current)) {
+            total += current;
+        }
+        current++;
+        
+        // Пропускаем четные числа кроме 2
+        if (current == 3) current++;
+    }
+    return total;
 }
